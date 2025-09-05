@@ -1,0 +1,10 @@
+# version: 3.9 Pas nécessaire car par défaut Docker prend la dernière version mais utile de le savoir 
+#si on veut imposer une version de syntaxe pour notre docker compose
+
+services:
+  service_ex5_1:
+    build: 
+      context: .
+      dockerfile: /image/Dockerfile
+    container_name: container_ex5_1 # Permet de définir le nom du container
+    #image: image_ex5_1:latest # Permet de définir le nom de l'image et de pouvoir la réutiliser 
