@@ -1,0 +1,51 @@
+services:
+  postgres_cli:
+    image: postgres:latest
+    container_name: postgres_cli
+    environment:
+      POSTGRES_USER: john
+      POSTGRES_DB: doe
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+    secrets:
+      - db_password
+
+  postgres_env_file:
+    image: postgres:latest
+    container_name: postgres_env_file
+    env_file:
+      - .env
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+    secrets:
+      - db_password
+
+  postgres_env_file_binded:
+    image: postgres:latest
+    container_name: postgres_env_file_binded
+    env_file:
+      - .env
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+    secrets:
+      - db_password
+
+  postgres_env_file_volume:
+    image: postgres:latest
+    container_name: postgres_env_file_volume
+    env_file:
+      - .env
+    volumes:
+      - postgre_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+    secrets:
+      - db_password
+
+volumes:
+  postgre_data:
+
+secrets:
+  db_password:
+    file: ./db_password.txt
