@@ -1,0 +1,2 @@
+Pour communiquer avec le serveur (machine hôte ou conteneur):
+curl http://localhost:3030 
